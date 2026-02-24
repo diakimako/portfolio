@@ -179,12 +179,26 @@ body {
   overflow: hidden;
 }
 
+/* Dot grid */
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Accent glow on top of dots */
 .cover::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 60% 80% at 50% 120%, rgba(194, 255, 63, 0.12) 0%, transparent 70%);
+    radial-gradient(ellipse 60% 80% at 50% 120%, rgba(194, 255, 63, 0.14) 0%, transparent 70%);
+}
+
+[data-theme='light'] .cover::before {
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.1) 1px, transparent 1px);
 }
 
 [data-theme='light'] .cover::after {
@@ -276,22 +290,63 @@ body {
 }
 
 .info-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: var(--s2);
+  display: flex;
+  flex-direction: column;
 }
 
-.info-item {
-  display: flex;
+.info-row {
+  display: grid;
+  grid-template-columns: 32px 100px 1fr;
   align-items: center;
-  gap: 10px;
+  gap: 0;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--c-border);
   font-size: var(--sz-sm);
-  color: var(--c-text);
+}
+
+.info-row:first-child {
+  border-top: 1px solid var(--c-border);
 }
 
 .info-icon {
-  color: var(--c-muted);
+  display: flex;
+  align-items: center;
+  color: var(--c-accent-a);
   flex-shrink: 0;
+}
+
+.info-label {
+  font-size: var(--sz-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-muted);
+}
+
+.info-value {
+  color: var(--c-text);
+  font-size: var(--sz-sm);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-value a {
+  color: var(--c-text);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.info-value a:hover {
+  color: var(--c-accent-a);
+  border-bottom-color: var(--c-accent-a);
+  text-decoration: none;
+}
+
+[data-theme='light'] .info-value a:hover {
+  color: var(--c-text);
+  border-bottom-color: var(--c-text);
 }
 
 /* ─── PROJECT CARDS ──────────────────────────────────────── */

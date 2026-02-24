@@ -11,12 +11,12 @@ const navLinks = [
 ];
 
 const info = [
-  { icon: GraduationCap, text: 'BS @ IIT-M' },
-  { icon: MapPin, text: 'India' },
-  { icon: Clock, text: 'UTC +05:30' },
-  { icon: Phone, text: '+62 895-2044-1498' },
-  { icon: Mail, text: 'shadylarva@gmail.com' },
-  { icon: Globe, text: 'shadylarva.me' },
+  { icon: GraduationCap, label: 'Education', text: 'BS 2nd Sem @IIT-M' },
+  { icon: MapPin, label: 'Location', text: 'India' },
+  { icon: Clock, label: 'Timezone', text: 'UTC +05:30' },
+  { icon: Phone, label: 'Phone', text: '+62 895-2044-1498', href: 'tel:+628952044-1498' },
+  { icon: Mail, label: 'Email', text: 'shadylarva@gmail.com', href: 'mailto:shadylarva@gmail.com' },
+  { icon: Globe, label: 'Website', text: 'shadylarva.me', href: 'https://shadylarva.me' },
 ];
 
 const projects = [
@@ -165,7 +165,7 @@ export default function App() {
         <div className="profile-name fade-up d2">
           Dia <VerifiedBadge />
         </div>
-        <p className="profile-role fade-up d3">Web Developer</p>
+        <p className="profile-role fade-up d3">Web & App Developer</p>
       </section>
 
       <RevealRule />
@@ -174,10 +174,16 @@ export default function App() {
       <section className="section">
         <RevealTitle>Info</RevealTitle>
         <div className="info-grid stagger">
-          {info.map(({ icon: Icon, text }) => (
-            <Reveal key={text} variant="left" className="info-item">
+          {info.map(({ icon: Icon, label, text, href }) => (
+            <Reveal key={label} variant="left" className="info-row">
               <span className="info-icon"><Icon size={14} /></span>
-              {text}
+              <span className="info-label">{label}</span>
+              <span className="info-value">
+                {href
+                  ? <a href={href} target={href.startsWith('http') ? '_blank' : '_self'} rel="noreferrer">{text}</a>
+                  : text
+                }
+              </span>
             </Reveal>
           ))}
         </div>
