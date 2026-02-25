@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, type ReactNode, type ElementType } from 'react';
-import { Moon, Sun, MapPin, Clock, Phone, Mail, Globe, ExternalLink, GraduationCap } from 'lucide-react';
+import { Moon, Sun, MapPin, Clock, Mail, Globe, ExternalLink, GraduationCap, Venus } from 'lucide-react';
 import pfp from './assets/pfp.jpg';
 import './index.css';
 
@@ -14,7 +14,7 @@ const info = [
   { icon: GraduationCap, label: 'Education', text: 'BS 2nd Sem @IIT-M' },
   { icon: MapPin, label: 'Location', text: 'India' },
   { icon: Clock, label: 'Timezone', text: 'UTC +05:30' },
-  { icon: Phone, label: 'Phone', text: '+62 895-2044-1498', href: 'tel:+628952044-1498' },
+  { icon: Venus, label: 'Pronouns', text: 'she / her' },
   { icon: Mail, label: 'Email', text: 'shadylarva@gmail.com', href: 'mailto:shadylarva@gmail.com' },
   { icon: Globe, label: 'Website', text: 'shadylarva.me', href: 'https://shadylarva.me' },
 ];
@@ -25,25 +25,28 @@ const projects = [
     desc: 'Headless component library built strictly around monospace type systems. Zero imposed styling.',
     tags: ['React', 'TypeScript', 'A11y'],
     href: '#',
+    img: null,
   },
   {
     title: 'Minimalist CLI',
     desc: 'Command-line tool for converting Markdown files to strictly monochrome, semantic HTML.',
     tags: ['Rust', 'CLI'],
     href: '#',
+    img: null,
   },
   {
     title: 'Grid Alignment Engine',
     desc: 'Layout engine that enforces 8px and 12px snap adherence at compile time.',
     tags: ['WASM', 'C++'],
     href: '#',
+    img: null,
   },
 ];
 
 const about = [
-  'Interested in the intersection of constraint and craft — where tight rules force better decisions.',
-  'Building tools for developers who believe less surface area means fewer failure modes.',
-  'Every pixel and every byte should justify its existence.',
+  'Web Developer, Design Engineer with 5+ years of experience, known for pixel-perfect execution and strong attention to small details.',
+  'Skilled in Next.js, React, TypeScript, Vite and modern front-end technologies; building high-quality, user-centric web and mobile applications.',
+  'Passionate about exploring new technologies and turning ideas into reality through polished, thoughtfully crafted personal projects.',
 ];
 
 /* ─── SCROLL-REVEAL HOOK ──────────────────────────────────── */
@@ -125,6 +128,30 @@ function VerifiedBadge() {
   );
 }
 
+/* ─── TEXT FLIP ──────────────────────────────────────────── */
+function TextFlip({ items, interval = 2400 }: { items: string[]; interval?: number }) {
+  const [idx, setIdx] = useState(0);
+  const [phase, setPhase] = useState<'idle' | 'out' | 'in'>('idle');
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setPhase('out');
+      setTimeout(() => {
+        setIdx(i => (i + 1) % items.length);
+        setPhase('in');
+        setTimeout(() => setPhase('idle'), 300);
+      }, 300);
+    }, interval);
+    return () => clearInterval(timer);
+  }, [items.length, interval]);
+
+  return (
+    <span className={`text-flip text-flip--${phase}`}>
+      {items[idx]}
+    </span>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════ */
 export default function App() {
   const [dark, setDark] = useState(true);
@@ -159,13 +186,15 @@ export default function App() {
       <section className="profile fade-up d1">
         <div className="avatar-wrap">
           <div className="avatar-inner">
-            <img src={pfp} alt="Dia's profile picture" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%', display: 'block' }} />
+            <img src={pfp} alt="Dia's profile picture" />
           </div>
         </div>
         <div className="profile-name fade-up d2">
           Dia <VerifiedBadge />
         </div>
-        <p className="profile-role fade-up d3">Web & App Developer</p>
+        <p className="profile-role fade-up d3">
+          <TextFlip items={['Web Developer', 'App Developer', 'Design Engineer', 'Graphics designer']} />
+        </p>
       </section>
 
       <RevealRule />
@@ -191,12 +220,66 @@ export default function App() {
 
       <RevealRule />
 
+      {/* ── About ──────────────────────────── */}
+      <section className="section">
+        <RevealTitle>About</RevealTitle>
+        <div className="about-list stagger">
+          {about.map((line, i) => (
+            <Reveal key={i} variant="right" className="about-item">
+              {line}
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <RevealRule />
+
+      {/* ── Stack ───────────────────────────── */}
+      <section className="section">
+        <RevealTitle>Stack</RevealTitle>
+        <div className="stack-grid stagger">
+          {[
+            { name: 'Next.js', slug: 'nextdotjs', href: 'https://nextjs.org' },
+            { name: 'React', slug: 'react', href: 'https://react.dev' },
+            { name: 'TypeScript', slug: 'typescript', href: 'https://typescriptlang.org' },
+            { name: 'Vite', slug: 'vite', href: 'https://vitejs.dev' },
+            { name: 'Node.js', slug: 'nodedotjs', href: 'https://nodejs.org' },
+            { name: 'Tailwind', slug: 'tailwindcss', href: 'https://tailwindcss.com' },
+            { name: 'Figma', slug: 'figma', href: 'https://figma.com' },
+            { name: 'Git', slug: 'git', href: 'https://git-scm.com' },
+            { name: 'Framer', slug: 'framer', href: 'https://framer.com' },
+            { name: 'Vercel', slug: 'vercel', href: 'https://vercel.com' },
+            { name: 'WordPress', slug: 'wordpress', href: 'https://wordpress.org' },
+            { name: 'Firebase', slug: 'firebase', href: 'https://firebase.google.com' },
+          ].map(({ name, slug, href }) => (
+            <Reveal key={name} variant="scale" className="stack-btn" as="a"
+              {...{ href, target: '_blank', rel: 'noreferrer' } as object}>
+              <img
+                src={`https://cdn.simpleicons.org/${slug}/ffffff`}
+                alt={name}
+                loading="lazy"
+              />
+              {name}
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <RevealRule />
+
       {/* ── Projects ───────────────────────── */}
       <section className="section" id="projects">
         <RevealTitle>Projects</RevealTitle>
         <div className="cards stagger">
           {projects.map(p => (
             <Reveal key={p.title} variant="up" className="card">
+              {/* Image placeholder */}
+              <div className="card-img">
+                {p.img
+                  ? <img src={p.img} alt={p.title} />
+                  : <div className="card-img-placeholder"><span>{p.title[0]}</span></div>
+                }
+              </div>
               <div className="card-header">
                 <span className="card-title">{p.title}</span>
                 <a className="card-link" href={p.href} target="_blank" rel="noreferrer">
@@ -207,20 +290,6 @@ export default function App() {
               <div className="tags">
                 {p.tags.map(t => <span className="tag" key={t}>{t}</span>)}
               </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
-
-      <RevealRule />
-
-      {/* ── About ──────────────────────────── */}
-      <section className="section">
-        <RevealTitle>About</RevealTitle>
-        <div className="about-list stagger">
-          {about.map((line, i) => (
-            <Reveal key={i} variant="right" className="about-item">
-              {line}
             </Reveal>
           ))}
         </div>
