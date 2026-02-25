@@ -435,6 +435,35 @@ body {
   display: block;
 }
 
+/* ─── COVER FALL ANIMATION ───────────────────────────────── */
+@keyframes coverFall {
+  0% {
+    transform: translateY(-16px) rotate(var(--cp-rotate, 0deg)) translateX(0px);
+    opacity: 0;
+  }
+
+  6% {
+    opacity: 1;
+  }
+
+  40% {
+    transform: translateY(40%) rotate(calc(var(--cp-rotate, 0deg) + 120deg)) translateX(16px);
+  }
+
+  70% {
+    transform: translateY(70%) rotate(calc(var(--cp-rotate, 0deg) + 260deg)) translateX(-12px);
+  }
+
+  94% {
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: translateY(220px) rotate(calc(var(--cp-rotate, 0deg) + 420deg)) translateX(8px);
+    opacity: 0;
+  }
+}
+
 /* ─── COVER ──────────────────────────────────────────────── */
 .cover {
   height: 200px;
@@ -445,6 +474,39 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* Particle container — fills the cover, sits behind the SVG */
+.cover-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Base particle */
+.cover-particle {
+  position: absolute;
+  top: -16px;
+  opacity: 0;
+  will-change: transform, opacity;
+  animation: coverFall linear infinite;
+}
+
+/* Cherry blossom petal — soft pink oval */
+.cover-particle--petal {
+  background: #e879a0;
+  border-radius: 50% 0 50% 0;
+  box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.5);
+  opacity: 0;
+}
+
+/* Green leaf — pointed ellipse, muted sage */
+.cover-particle--leaf {
+  background: #6b9e6b;
+  border-radius: 50% 10% 50% 10%;
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.25);
+  opacity: 0;
 }
 
 /* Subtle dot pattern */
@@ -584,7 +646,7 @@ body {
 }
 
 .badge svg polyline {
-  stroke: var(--c-sakura);
+  stroke: #ffffff;
 }
 
 .profile-role {
@@ -628,21 +690,21 @@ body {
   gap: 7px;
   margin-top: 14px;
   padding: 5px 12px;
-  border: 1px solid rgba(232, 121, 160, 0.2);
+  border: 1px solid rgba(107, 158, 107, 0.3);
   font-family: var(--f-mono);
   font-size: var(--sz-xs);
   font-weight: 500;
   letter-spacing: 0.08em;
-  color: var(--c-sakura);
+  color: #4a8c4a;
   text-transform: uppercase;
-  background: rgba(232, 121, 160, 0.04);
+  background: rgba(107, 158, 107, 0.06);
 }
 
 .avail-dot {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--c-sakura);
+  background: #4a8c4a;
   flex-shrink: 0;
   animation: pulse-dot 2.2s ease-in-out infinite;
 }
@@ -1118,7 +1180,7 @@ body {
 .response-tag {
   font-family: var(--f-mono);
   font-size: var(--sz-xs);
-  color: var(--c-muted);
+  color: #4a8c4a;
   display: flex;
   align-items: center;
   gap: 5px;
@@ -1128,7 +1190,7 @@ body {
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--c-sakura);
+  background: #4a8c4a;
   flex-shrink: 0;
 }
 

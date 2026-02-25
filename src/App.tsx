@@ -3,6 +3,10 @@ import { MapPin, Clock, Mail, Globe, ExternalLink, GraduationCap, Venus } from '
 import pfp from './assets/pfp.jpg';
 import diaCover from './assets/dia_cover.svg';
 import cuteWebm from './assets/cute.webm';
+import proj1 from './assets/Projects/1.jpg';
+import proj2 from './assets/Projects/2.jpg';
+import proj3 from './assets/Projects/3.jpg';
+import proj4 from './assets/Projects/4.jpg';
 import './index.css';
 
 /* ─── DATA ───────────────────────────────────────────────── */
@@ -23,32 +27,32 @@ const info = [
 
 const projects = [
   {
-    title: 'Zero-Config UI Lib',
-    desc: 'Headless component library built strictly around monospace type systems. Zero imposed styling.',
+    title: 'MTR Energy Platform',
+    desc: 'A clean, conversion-focused solar website showcasing rooftop solutions and enabling seamless customer lead generation.',
     tags: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
-    href: '#',
-    img: null as string | null,
+    href: 'https://mtrconstruct.vercel.app/',
+    img: proj1,
   },
   {
-    title: 'Minimalist CLI',
-    desc: 'Command-line tool for converting Markdown files to strictly monochrome, semantic HTML.',
+    title: 'Syncify',
+    desc: 'Real-time music streaming platform with synchronized playback, live chat, and social listening features',
     tags: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
-    href: '#',
-    img: null as string | null,
+    href: 'https://syncify-50d7.onrender.com/',
+    img: proj2,
   },
   {
-    title: 'Grid Alignment Engine',
-    desc: 'Layout engine that enforces 8px and 12px snap adherence at compile time.',
+    title: 'CollabHeaven Studio',
+    desc: 'Modern agency website built to convert visitors into clients through clear structure and strong visual impact.',
     tags: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
-    href: '#',
-    img: null as string | null,
+    href: 'https://shadysubh-ch.netlify.app/',
+    img: proj3,
   },
   {
-    title: 'Design Token Studio',
-    desc: 'Visual editor for managing design tokens across multiple platforms and brand themes.',
+    title: 'MTR (Mobile-First)',
+    desc: 'Mobile-first web experience with smooth, app-like navigation, optimized for speed, clarity, and real users.',
     tags: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
-    href: '#',
-    img: null as string | null,
+    href: 'https://mtr-mobile-seven.vercel.app/',
+    img: proj4,
   },
 ];
 
@@ -175,7 +179,7 @@ function VerifiedBadge() {
   return (
     <span className="badge" aria-label="Verified">
       <svg width="11" height="11" viewBox="0 0 12 12" fill="none">
-        <polyline points="2.5,6 5,8.5 9.5,3.5" stroke="#c9496e"
+        <polyline points="2.5,6 5,8.5 9.5,3.5" stroke="#ffffffff"
           strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     </span>
@@ -232,6 +236,46 @@ function SakuraPetals() {
   );
 }
 
+/* ─── COVER PARTICLES (cherry blossom + leaves inside .cover) ── */
+const COVER_PARTICLES = [
+  // Cherry blossom petals — pink
+  { type: 'petal', left: '5%', delay: '0s', dur: '6s', size: 8, rotate: 30 },
+  { type: 'petal', left: '18%', delay: '1.2s', dur: '7.5s', size: 6, rotate: -20 },
+  { type: 'petal', left: '34%', delay: '2.8s', dur: '5.8s', size: 9, rotate: 60 },
+  { type: 'petal', left: '52%', delay: '0.5s', dur: '8s', size: 7, rotate: -40 },
+  { type: 'petal', left: '67%', delay: '3.5s', dur: '6.5s', size: 5, rotate: 15 },
+  { type: 'petal', left: '80%', delay: '1.8s', dur: '7s', size: 8, rotate: -55 },
+  { type: 'petal', left: '91%', delay: '4s', dur: '5.5s', size: 6, rotate: 45 },
+  // Green leaves
+  { type: 'leaf', left: '11%', delay: '0.8s', dur: '9s', size: 10, rotate: 20 },
+  { type: 'leaf', left: '28%', delay: '2s', dur: '7.8s', size: 12, rotate: -35 },
+  { type: 'leaf', left: '45%', delay: '4.5s', dur: '8.5s', size: 9, rotate: 50 },
+  { type: 'leaf', left: '61%', delay: '1.5s', dur: '10s', size: 11, rotate: -15 },
+  { type: 'leaf', left: '75%', delay: '3s', dur: '9.5s', size: 10, rotate: 30 },
+  { type: 'leaf', left: '88%', delay: '5s', dur: '8s', size: 8, rotate: -60 },
+];
+
+function CoverParticles() {
+  return (
+    <div className="cover-particles" aria-hidden="true">
+      {COVER_PARTICLES.map((p, i) => (
+        <div
+          key={i}
+          className={`cover-particle cover-particle--${p.type}`}
+          style={{
+            left: p.left,
+            width: p.size,
+            height: p.size,
+            animationDuration: p.dur,
+            animationDelay: p.delay,
+            '--cp-rotate': `${p.rotate}deg`,
+          } as React.CSSProperties}
+        />
+      ))}
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════════════════════ */
 export default function App() {
   const navigate = useSmoothNav();
@@ -270,6 +314,7 @@ export default function App() {
 
         {/* ── Cover ──────────────────────────── */}
         <div className="cover">
+          <CoverParticles />
           <span className="cover-svg-wrap">
             <img src={diaCover} alt="Dia" className="cover-svg" loading="eager" />
           </span>
