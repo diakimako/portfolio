@@ -677,6 +677,315 @@ body {
   color: #f7f7f5;
 }
 
+/* ─── AVAILABILITY BADGE ─────────────────────────────────── */
+.avail-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: var(--s2);
+  padding: 5px 12px;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  font-size: var(--sz-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: #4ade80;
+  text-transform: uppercase;
+  cursor: default;
+}
+
+.avail-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5);
+  }
+
+  50% {
+    opacity: 0.7;
+    box-shadow: 0 0 0 5px rgba(74, 222, 128, 0);
+  }
+}
+
+[data-theme='light'] .avail-badge {
+  color: #16a34a;
+  border-color: rgba(22, 163, 74, 0.3);
+}
+
+[data-theme='light'] .avail-dot {
+  background: #16a34a;
+}
+
+/* ─── STATS ROW ──────────────────────────────────────────── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  margin-top: var(--s4);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: var(--s3) var(--s2);
+  border-left: 1px solid var(--c-border);
+}
+
+.stat-item:first-child {
+  border-left: none;
+}
+
+.stat-num {
+  font-size: var(--sz-lg);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--c-text);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: var(--sz-xs);
+  color: var(--c-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* ─── CTA BUTTONS ────────────────────────────────────────── */
+.cta-row {
+  display: flex;
+  gap: var(--s2);
+  margin-top: var(--s4);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px var(--s3);
+  background: var(--c-accent-a);
+  color: #0a0a0a;
+  font-family: var(--f);
+  font-size: var(--sz-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px var(--s3);
+  background: transparent;
+  color: var(--c-text);
+  font-family: var(--f);
+  font-size: var(--sz-xs);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid var(--c-border-hi);
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.btn-ghost:hover {
+  border-color: var(--c-text);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
+[data-theme='light'] .btn-primary {
+  background: #0a0a0a;
+  color: #f7f7f5;
+}
+
+/* ─── SERVICES ───────────────────────────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s2);
+}
+
+.service-card {
+  padding: var(--s3);
+  border: 1px solid var(--c-border);
+  background: var(--c-surface);
+  transition: border-color 0.2s;
+}
+
+.service-card:hover {
+  border-color: var(--c-border-hi);
+}
+
+.service-icon {
+  font-size: 1.3rem;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.service-name {
+  font-size: var(--sz-sm);
+  font-weight: 600;
+  color: var(--c-text);
+  margin-bottom: 4px;
+}
+
+.service-desc {
+  font-size: var(--sz-xs);
+  color: var(--c-muted);
+  line-height: 1.7;
+}
+
+/* ─── CONTACT ENHANCEMENTS ───────────────────────────────── */
+.contact-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  margin-bottom: var(--s4);
+  flex-wrap: wrap;
+}
+
+.contact-email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px var(--s3);
+  border: 1px solid var(--c-border-hi);
+  color: var(--c-text);
+  font-family: var(--f);
+  font-size: var(--sz-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.contact-email-btn:hover {
+  border-color: var(--c-accent-a);
+  color: var(--c-accent-a);
+  text-decoration: none;
+}
+
+[data-theme='light'] .contact-email-btn:hover {
+  color: var(--c-text);
+  border-color: var(--c-text);
+}
+
+.response-tag {
+  font-size: var(--sz-xs);
+  color: var(--c-muted);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.response-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+}
+
+/* Nav Instagram icon link */
+.nav-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--c-muted);
+  transition: color 0.15s;
+  padding: 2px;
+}
+
+.nav-icon-link:hover {
+  color: var(--c-text);
+  text-decoration: none;
+}
+
+/* Email + copy button wrapper */
+.contact-email-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+}
+
+/* Copy button */
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 100%;
+  min-height: 36px;
+  border: 1px solid var(--c-border-hi);
+  border-left: none;
+  background: transparent;
+  color: var(--c-muted);
+  cursor: pointer;
+  font-family: var(--f);
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.copy-btn:hover {
+  color: var(--c-text);
+  background: var(--c-surface);
+}
+
+.copy-btn.copied {
+  color: #4ade80;
+}
+
+/* Instagram DM button */
+.ig-dm-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px var(--s3);
+  border: 1px solid var(--c-border);
+  color: var(--c-muted);
+  font-family: var(--f);
+  font-size: var(--sz-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-color 0.15s, color 0.15s;
+  width: 100%;
+  justify-content: center;
+}
+
+.ig-dm-btn:hover {
+  border-color: #e1306c;
+  color: #e1306c;
+  text-decoration: none;
+}
+
 /* ─── FOOTER ─────────────────────────────────────────────── */
 .footer {
   padding: var(--s3);
@@ -813,4 +1122,78 @@ body {
   .info-grid {
     grid-template-columns: 1fr;
   }
+}
+
+/* ─── COPY BUTTON ─────────────────────────────────────────── */
+.contact-email-wrap {
+  display: inline-flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 12px;
+  border: 1px solid var(--c-border-hi);
+  border-left: none;
+  background: transparent;
+  color: var(--c-muted);
+  cursor: pointer;
+  font-family: var(--f);
+  font-size: var(--sz-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  color: var(--c-text);
+  background: var(--c-surface);
+}
+
+.copy-btn.copied {
+  color: #4ade80;
+}
+
+/* ─── FORM ACTIONS ROW ────────────────────────────────────── */
+.form-actions {
+  display: flex;
+  gap: var(--s2);
+  margin-top: var(--s2);
+  flex-wrap: wrap;
+}
+
+/* Make submit-btn not self-aligned so it works in flex row */
+.form-actions .submit-btn {
+  margin-top: 0;
+  flex: 1;
+}
+
+/* ─── INSTAGRAM DM BUTTON ────────────────────────────────── */
+.ig-dm-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px var(--s3);
+  border: 1px solid var(--c-border);
+  color: var(--c-muted);
+  font-family: var(--f);
+  font-size: var(--sz-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: border-color 0.15s, color 0.15s;
+  flex: 1;
+}
+
+.ig-dm-btn:hover {
+  border-color: #e1306c;
+  color: #e1306c;
+  text-decoration: none;
 }
