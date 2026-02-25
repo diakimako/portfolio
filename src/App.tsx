@@ -248,7 +248,7 @@ export default function App() {
 
         {/* ── Navbar ─────────────────────────── */}
         <nav className="nav">
-          <span className="nav-logo">DIA</span>
+          <img src={diaCover} alt="Dia" className="nav-logo-img" />
           <div className="nav-links">
             {navLinks.map(l => (
               l.external
@@ -326,8 +326,10 @@ export default function App() {
           <div className="info-grid stagger">
             {info.map(({ icon: Icon, label, text, href }) => (
               <Reveal key={label} variant="left" className="info-row">
-                <span className="info-icon"><Icon size={14} /></span>
-                <span className="info-label">{label}</span>
+                <div className="info-label-cell">
+                  <span className="info-icon"><Icon size={13} /></span>
+                  <span className="info-label">{label}</span>
+                </div>
                 <span className="info-value">
                   {href
                     ? <a href={href} target={href.startsWith('http') ? '_blank' : '_self'} rel="noreferrer">{text}</a>

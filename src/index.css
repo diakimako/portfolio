@@ -292,18 +292,18 @@ body {
   will-change: transform;
 }
 
-/* Logo — only place sakura gradient appears prominently */
-.nav-logo {
-  font-family: var(--f-mono);
-  font-size: var(--sz-md);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  background: linear-gradient(90deg, #0a0a0a 0%, var(--c-sakura) 50%, #0a0a0a 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: sakura-shimmer 5s linear infinite;
+/* Nav logo — dia_cover SVG image, no text */
+.nav-logo-img {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  opacity: 0.9;
+  transition: opacity 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-logo-img:hover {
+  opacity: 1;
 }
 
 .nav-links {
@@ -411,7 +411,7 @@ body {
 
 /* ─── COVER ──────────────────────────────────────────────── */
 .cover {
-  height: 160px;
+  height: 200px;
   background: var(--c-surface);
   border-bottom: 1px solid var(--c-border-hi);
   position: relative;
@@ -431,15 +431,14 @@ body {
   pointer-events: none;
 }
 
-/* dia_cover SVG — centered on the dot grid */
+/* dia_cover SVG — centered on the dot grid, bigger */
 .cover-svg {
   position: relative;
   z-index: 1;
-  height: 72px;
+  height: 110px;
   width: auto;
   object-fit: contain;
   opacity: 0.88;
-  overflow: hidden;
   display: block;
 }
 
@@ -690,54 +689,69 @@ body {
   margin-bottom: var(--s3);
 }
 
+/* Info grid: compact bordered table */
 .info-grid {
-  display: flex;
-  flex-direction: column;
+  border: 1px solid var(--c-border-hi);
+  background: var(--c-surface);
 }
 
 .info-row {
   display: grid;
-  grid-template-columns: 32px 110px 1fr;
-  align-items: center;
-  padding: 11px 0;
+  grid-template-columns: 152px 1fr;
+  align-items: stretch;
   border-bottom: 1px solid var(--c-border);
   font-size: var(--sz-sm);
-  transition: padding-left 0.15s;
+  transition: background 0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.info-row:first-child {
-  border-top: 1px solid var(--c-border);
+.info-row:last-child {
+  border-bottom: none;
 }
 
 .info-row:hover {
-  padding-left: 4px;
+  background: var(--c-surface-2);
+}
+
+/* Left cell: icon + label combined */
+.info-label-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  border-right: 1px solid var(--c-border);
+  background: var(--c-surface-2);
 }
 
 .info-icon {
   display: flex;
   align-items: center;
-  color: var(--c-muted);
+  color: var(--c-dim);
   flex-shrink: 0;
 }
 
 .info-label {
   font-family: var(--f-mono);
   font-size: var(--sz-xs);
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--c-muted);
+  white-space: nowrap;
 }
 
+/* Right cell: value */
 .info-value {
+  padding: 11px 14px;
   color: var(--c-text);
   font-size: var(--sz-sm);
+  display: flex;
+  align-items: center;
 }
 
 .info-value a {
   color: var(--c-text);
   text-decoration: none;
-  border-bottom: 1px solid transparent;
+  border-bottom: 1px solid var(--c-border);
   transition: border-color 0.15s, color 0.15s;
 }
 
