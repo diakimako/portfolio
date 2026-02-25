@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback, type ReactNode, type ElementT
 import { MapPin, Clock, Mail, Globe, ExternalLink, GraduationCap, Venus } from 'lucide-react';
 import pfp from './assets/pfp.jpg';
 import diaCover from './assets/dia_cover.svg';
+import cuteWebm from './assets/cute.webm';
 import './index.css';
 
 /* ─── DATA ───────────────────────────────────────────────── */
@@ -311,10 +312,15 @@ export default function App() {
           </div>
 
           <div className="cta-row fade-up">
-            <a href="#contact" className="btn-primary"
+            <a href="#contact" className="btn-primary btn-lg"
               onClick={e => handleAnchor(e as any, '#contact')}>Hire Me →</a>
-            <a href="#projects" className="btn-ghost"
+            <a href="#projects" className="btn-ghost btn-lg"
               onClick={e => handleAnchor(e as any, '#projects')}>View Work</a>
+            <div className="cta-video" aria-hidden="true">
+              <video autoPlay loop muted playsInline>
+                <source src={cuteWebm} type="video/webm" />
+              </video>
+            </div>
           </div>
         </section>
 
