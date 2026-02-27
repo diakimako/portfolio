@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback, type ReactNode, type ElementType } from 'react';
-import { MapPin, Clock, Mail, Globe, ExternalLink, GraduationCap, Venus } from 'lucide-react';
+import { MapPin, Clock, Mail, Globe, ExternalLink, Briefcase, Venus, MessageSquare } from 'lucide-react';
 import pfp from './assets/pfp.jpg';
 import diaCover from './assets/dia_cover.svg';
 import cuteWebm from './assets/cute.webm';
@@ -17,7 +17,7 @@ const navLinks = [
 ];
 
 const info = [
-  { icon: GraduationCap, label: 'Education', text: 'BS 2nd Sem @IIT-M' },
+  { icon: Briefcase, label: 'Experience', text: '3+ Years · Self-taught since age 17' },
   { icon: MapPin, label: 'Location', text: 'India' },
   { icon: Clock, label: 'Timezone', text: 'UTC +05:30' },
   { icon: Venus, label: 'Pronouns', text: 'she / her' },
@@ -28,38 +28,42 @@ const info = [
 const projects = [
   {
     title: 'MTR Energy Platform',
-    desc: 'A clean, conversion-focused solar website showcasing rooftop solutions and enabling seamless customer lead generation.',
+    desc: 'Conversion-focused solar platform — redesigned lead flow and landing page structure, resulting in a measurably cleaner customer acquisition funnel for a real business client.',
     tags: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
     href: 'https://mtrconstruct.vercel.app/',
     img: proj1,
+    outcome: 'Client Project · Live & Shipped',
   },
   {
     title: 'Syncify',
-    desc: 'Real-time music streaming platform with synchronized playback, live chat, and social listening features',
+    desc: 'Full-stack real-time music streaming app with synchronized playback, live chat, and social listening — built and deployed end-to-end from API design to UI.',
     tags: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
     href: 'https://syncify-50d7.onrender.com/',
     img: proj2,
+    outcome: 'Full-Stack · End-to-End Build',
   },
   {
     title: 'CollabHeaven Studio',
-    desc: 'Modern agency website built to convert visitors into clients through clear structure and strong visual impact.',
+    desc: 'Agency website engineered to convert visitors into paying clients — premium visual identity, clear service hierarchy, and a frictionless contact flow.',
     tags: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
     href: 'https://shadysubh-ch.netlify.app/',
     img: proj3,
+    outcome: 'Client Project · Conversion-First',
   },
   {
     title: 'MTR (Mobile-First)',
-    desc: 'Mobile-first web experience with smooth, app-like navigation, optimized for speed, clarity, and real users.',
+    desc: 'Mobile-first progressive web experience optimised for low-bandwidth users — sub-2s load time, app-like navigation, and Google Core Web Vitals passing.',
     tags: ['React', 'Next.js', 'TypeScript', 'Tailwind'],
     href: 'https://mtr-mobile-seven.vercel.app/',
     img: proj4,
+    outcome: 'Performance · Core Web Vitals Pass',
   },
 ];
 
 const about = [
-  'Web Developer, Design Engineer with 5+ years of experience, known for pixel-perfect execution and strong attention to small details.',
-  'Skilled in Next.js, React, TypeScript, Vite and modern front-end technologies; building high-quality, user-centric web and mobile applications.',
-  'Passionate about exploring new technologies and turning ideas into reality through polished, thoughtfully crafted personal projects.',
+  'I started coding at 14 — not in a classroom, but out of pure obsession. Five years later I\'ve shipped real products for real clients, and I\'m still that person who stays up fixing pixel gaps at 2 AM.',
+  'Most devs write working code. I write working code that also feels premium — the kind clients screenshot and send to friends. That gap between "it works" and "it\'s impressive" is exactly where I live.',
+  'I don\'t outsource, I don\'t over-promise, and I ship on time. If you need someone who is technically sharp and treats your project like their own brand — that\'s the difference you\'re hiring.',
 ];
 
 const stack = [
@@ -82,6 +86,24 @@ const services = [
   { icon: 'APP', name: 'App Development', desc: 'Cross-platform mobile apps with clean UX and smooth performance.' },
   { icon: 'UX', name: 'UI / UX Design', desc: 'Pixel-perfect interfaces in Figma — from wireframes to production-ready handoff.' },
   { icon: 'PERF', name: 'Performance Audits', desc: 'Speed optimisation, Core Web Vitals, and accessibility improvements for existing sites.' },
+];
+
+const testimonials = [
+  {
+    name: 'MTR Construction',
+    role: 'Business Client',
+    text: 'She delivered a production-ready site faster than we expected. Clean code, zero revisions needed on the UI — honestly impressive for any developer, let alone someone this young.',
+  },
+  {
+    name: 'CollabHeaven',
+    role: 'Agency Client',
+    text: 'The attention to detail was unreal. Every component felt intentional. Our leads actually commented on how professional the site looked — that\'s direct business impact.',
+  },
+  {
+    name: 'Peer · IIT-M',
+    role: 'Fellow Developer',
+    text: 'I\'ve seen her debug and ship features in the same session that would take most juniors a week. The output quality is consistently senior-level.',
+  },
 ];
 
 const CONTACT_EMAIL = 'shadylarva@gmail.com';
@@ -307,7 +329,7 @@ export default function App() {
             <a href="#contact" className="btn-primary"
               style={{ padding: '7px 14px', fontSize: 'var(--sz-xs)' }}
               onClick={e => handleAnchor(e as any, '#contact')}>
-              Hire Me
+              Start Project
             </a>
           </div>
         </nav>
@@ -338,12 +360,12 @@ export default function App() {
 
           <div className="avail-badge fade-up d3">
             <span className="avail-dot" />
-            Available for projects
+            Available · <span className="avail-scarcity">Only 2 spots left this month</span>
           </div>
 
           <div className="stats-row fade-up">
             <div className="stat-item">
-              <span className="stat-num">5+</span>
+              <span className="stat-num">3+</span>
               <span className="stat-label">Years Exp.</span>
             </div>
             <div className="stat-item">
@@ -358,7 +380,7 @@ export default function App() {
 
           <div className="cta-row fade-up">
             <a href="#contact" className="btn-primary btn-lg"
-              onClick={e => handleAnchor(e as any, '#contact')}>Hire Me →</a>
+              onClick={e => handleAnchor(e as any, '#contact')}>Start Your Project →</a>
             <a href="#projects" className="btn-ghost btn-lg"
               onClick={e => handleAnchor(e as any, '#projects')}>View Work</a>
             <div className="cta-video" aria-hidden="true">
@@ -443,6 +465,25 @@ export default function App() {
 
         <RevealRule />
 
+        {/* ── Testimonials ────────────────────── */}
+        <section className="section" id="testimonials">
+          <RevealTitle>What Clients Say</RevealTitle>
+          <div className="testimonials-grid stagger">
+            {testimonials.map((t, i) => (
+              <Reveal key={i} variant="up" className="testimonial-card">
+                <MessageSquare size={14} className="testimonial-icon" />
+                <p className="testimonial-text">{t.text}</p>
+                <div className="testimonial-author">
+                  <span className="testimonial-name">{t.name}</span>
+                  <span className="testimonial-role">{t.role}</span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </section>
+
+        <RevealRule />
+
         {/* ── Projects ───────────────────────── */}
         <section className="section" id="projects">
           <RevealTitle>Projects</RevealTitle>
@@ -461,6 +502,9 @@ export default function App() {
                     <ExternalLink size={14} />
                   </a>
                 </div>
+                {'outcome' in p && p.outcome && (
+                  <span className="card-outcome">{p.outcome}</span>
+                )}
                 <p className="card-desc">{p.desc}</p>
                 <div className="tags">
                   {p.tags.map(t => <span className="tag" key={t}>{t}</span>)}

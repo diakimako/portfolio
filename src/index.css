@@ -700,6 +700,13 @@ body {
   background: rgba(107, 158, 107, 0.06);
 }
 
+/* Scarcity text inside availability badge — sakura accent for urgency */
+.avail-scarcity {
+  color: var(--c-sakura);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
 .avail-dot {
   width: 5px;
   height: 5px;
@@ -991,7 +998,22 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+}
+
+/* Outcome pill — tiny metadata badge below card title */
+.card-outcome {
+  display: inline-block;
+  margin: 0 var(--s3) 10px;
+  padding: 2px 8px;
+  font-family: var(--f-mono);
+  font-size: calc(var(--sz-xs) * 0.9);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-sakura);
+  border: 1px solid rgba(201, 73, 110, 0.25);
+  background: rgba(201, 73, 110, 0.04);
 }
 
 .tags {
@@ -1112,6 +1134,85 @@ body {
   font-size: var(--sz-xs);
   color: var(--c-muted);
   line-height: 1.7;
+}
+
+/* ─── TESTIMONIALS ───────────────────────────────────────── */
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  border: 1px solid var(--c-border);
+  background: var(--c-border);
+}
+
+.testimonial-card {
+  background: var(--c-surface);
+  padding: var(--s3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  transition: background 0.2s;
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '\201C';
+  position: absolute;
+  top: 10px;
+  right: var(--s3);
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--c-dim);
+  font-family: Georgia, serif;
+  pointer-events: none;
+}
+
+.testimonial-card:hover {
+  background: var(--c-surface-2);
+}
+
+.testimonial-icon {
+  color: var(--c-sakura);
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.testimonial-text {
+  font-size: var(--sz-sm);
+  color: var(--c-text);
+  line-height: 1.8;
+  flex: 1;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-top: var(--s2);
+  border-top: 1px solid var(--c-border);
+}
+
+.testimonial-name {
+  font-family: var(--f-mono);
+  font-size: var(--sz-xs);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--c-text);
+  text-transform: uppercase;
+}
+
+.testimonial-role {
+  font-family: var(--f-mono);
+  font-size: var(--sz-xs);
+  color: var(--c-muted);
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 600px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ─── CONTACT ────────────────────────────────────────────── */
